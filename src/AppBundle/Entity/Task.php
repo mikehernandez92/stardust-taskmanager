@@ -27,7 +27,13 @@ class Task
      * @ORM\Column(name="label", type="string", length=255)
      */
     private $label;
-
+	
+	/**
+     * @var boolean
+     *
+     * @ORM\Column(name="complete", type="boolean",options={"default":"0"})
+     */
+    private $complete;
 
     /**
      * Get id
@@ -61,6 +67,30 @@ class Task
     public function getLabel()
     {
         return $this->label;
+    }
+	
+	/**
+     * Set complete
+     *
+     * @param boolean $complete
+     *
+     * @return Task
+     */
+    public function setComplete($complete)
+    {
+        $this->complete = $complete;
+
+        return $this;
+    }
+
+    /**
+     * Get complete
+     *
+     * @return complete
+     */
+    public function getComplete()
+    {
+        return $this->complete;
     }
 }
 

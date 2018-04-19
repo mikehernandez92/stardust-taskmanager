@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+         <h1>Task Control</h1>
+        </div>
+		
+		<div class="col-md-12">
+		  <table class="table table-striped">
+			<thead>
+              <tr>
+                <th style="width:5%">Data</th>
+				<th>Descrription</th>
+              </tr>
+            </thead>
+            <tbody>
+				<tr>
+					<td>ID</td>
+					<td>{{ task.id}}</td>
+				</tr>
+				
+				<tr>
+					<td>Task</td>
+					<td>{{ task.label}}</td>
+				</tr>
+				
+				<tr>
+					<td>Status</td>
+					{% if task.complete == false%}
+						<td><span class="label label-warning">Not completed</span></td>
+					{%else%}
+						<td><span class="label label-success">Completed</span></td>
+					{%endif%}
+				</tr>
+			</tbody>
+		  </table>
+		  
+		  
+		  
+      </div>
+	  
+	  <div class="row">
+			<div class="col-md-12">
+		  
+				{%if task.complete == false%}
+					<a href="/taskManage/completeTask/{{ task.id }}" class="btn btn-primary">Complete Task</a>
+				{%endif%}
+					<a href="/taskManage/remove/{{ task.id }}" class="btn btn-danger">Delete Task</a>
+			</div>
+		  </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

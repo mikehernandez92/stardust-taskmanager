@@ -36,9 +36,15 @@ class DefaultController extends Controller
 
         $task = new Task();
         $task->setLabel($label);
+		$task->setComplete(false);
 
         $em->persist($task);
         $em->flush();
+		
+		$this->addFlash(
+			'notice',
+			'Task saved correctly'
+		);
 
         return $this->redirect( $this->generateUrl('homepage') );
     }

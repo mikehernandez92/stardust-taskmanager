@@ -8,20 +8,32 @@
               <tr>
                 <th style="width:5%">Id</th>
                 <th>Task</th>
+				<th>Completed</th>
               </tr>
             </thead>
             <tbody>
                 {% for task in tasks %}
-                <tr>
+                <tr onclick="location.href='/taskManage/{{ task.id}}';">
                     <td>{{ task.id }}</td>
                     <td>{{ task.label }}</td>
+					
+					{% if task.complete == false%}
+						<td><span class="label label-warning">Not completed</span></td>
+					{%else%}
+						<td><span class="label label-success">Completed</span></td>
+					{%endif%}
                 </tr>
                 {% endfor %}
                 <tr>
                     <form method="post" action="{{ app.request.baseurl }}/add">
                         <td colspan="2">
-                            <input type="textbox" name="label" class="small-6 small-center" placeholder="New task description..."> <button type="submit" class="btn btn-sm btn-primary">Add</button>
+                            <input type="textbox" required name="label" class="small-6 small-center" placeholder="New task description..."> <button type="submit" class="btn btn-sm btn-primary">Add</button>
                         </td>
+							{% for message in app.flashes('notice') %}
+								<td><div class="flash-notice text-success">
+									{{ message }}
+								</div></td>
+							{% endfor %}
                     </form>
                 </tr>
             </tbody>
